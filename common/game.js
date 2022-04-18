@@ -78,7 +78,7 @@
       this.isAccelerating 	= false;
       this.isRotatingLeft   = false;
       this.isRotatingRight  = false;
-      this.isBraking   			= false;
+      this.isBraking   		 = false;
 
 
       var o =  this.position; 
@@ -118,7 +118,7 @@ Game = {
   setScene(scene){
     Game.scene = new Parser.Race(scene)
 
-    Game.scene.trackObj = new TrackMaker(Game.scene.track);
+    Game.scene.trackObj = new TrackMaker_texCoords(Game.scene.track,0.2);
 	  var bbox = scene.bbox;
   	var quad = [bbox[0], bbox[1] - 0.01, bbox[5],
             		bbox[3], bbox[1] - 0.01, bbox[5],
@@ -126,11 +126,15 @@ Game = {
                 bbox[0], bbox[1] - 0.01, bbox[2],
             	];
 
-	  Game.scene.groundObj = new Quadrilateral(quad);
+	  Game.scene.groundObj = new QuadGround(quad,10);
 
 	  Game.scene.buildingsObj  = new Array(Game.scene.buildings.length);
-  	for (var i = 0; i < Game.scene.buildings.length; ++i) 
-	  	Game.scene.buildingsObj[i] = new BuildingMaker(Game.scene.buildings[i]);
+	  Game.scene.buildingsObjTex  = new Array(Game.scene.buildings.length);
+  	for (var i = 0; i < Game.scene.buildings.length; ++i){  
+	  	Game.scene.buildingsObj[i] = new BuildingMaker(Game.scene.buildings[i],0.1);
+	  	Game.scene.buildingsObjTex[i] = new BuildingMaker_texCoordsFacades(Game.scene.buildings[i],0.1);
+	  	Game.scene.buildingsObjTex[i].roof = new BuildingMaker_texCoordsRoof(Game.scene.buildings[i],1.0);
+  	}
   }
 };
 

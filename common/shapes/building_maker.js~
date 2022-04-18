@@ -48,7 +48,7 @@ function BuildingMaker(b) {
 	this.numTriangles = this.triangleIndices.length / 3;
 };
 
-function BuildingMaker_texCoordsFacades(b,scale) {
+function TexturedFacades(b,scale) {
 	this.name = "TexturedFacades";
 
 	var nv = b.pointsCount;
@@ -127,7 +127,7 @@ function BuildingMaker_texCoordsFacades(b,scale) {
 	this.numTriangles = this.triangleIndices.length / 3;
 };
 
-function BuildingMaker_texCoordsRoof(b,scale) {
+function TexturedRoof(b,scale) {
 	this.name = "TexturedRoof";
 
 	var nv = b.pointsCount;
